@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Little Miracles Closet Dividers</title>
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1f2933;
+      --muted: #667085;
+      --line: #e6e9ee;
+      --wash: #fafafa;
+      --brand: #2baadf;
+      --brand-dark: #167aa3;
+      --soft-brand: #e8f7f8;
+      --money: #087f23;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: linear-gradient(180deg, #fff 0, #fff 320px, #fbfcfd 320px);
+      color: var(--ink);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .site-header {
+      display: grid;
+      place-items: center;
+      background: #fafafa;
+      border-bottom: 1px solid #ededed;
+    }
+
+    .logo {
+      display: block;
+      width: min(100%, 1500px);
+      height: auto;
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 52px;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .shop-intro {
+      display: grid;
+      justify-items: center;
+      gap: 16px;
+      margin: 0 auto 32px;
+      padding: 26px 18px;
+      border: 1px solid #eef1f3;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(31, 41, 51, .05);
+      text-align: center;
+    }
+
+    .intro {
+      max-width: 680px;
+      margin: 0;
+      color: #52606d;
+      font-size: 18px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .chips {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      padding: 8px 12px;
+      border: 1px solid #dceff1;
+      border-radius: 999px;
+      background: var(--soft-brand);
+      color: #276b72;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .product {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      overflow: hidden;
+      min-height: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(31, 41, 51, .05);
+      cursor: pointer;
+      transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+    }
+
+    .product:hover,
+    .product:focus-visible {
+      border-color: #d5dbe3;
+      box-shadow: 0 10px 28px rgba(31, 41, 51, .1);
+      transform: translateY(-2px);
+    }
+
+    .product:focus-visible {
+      outline: 3px solid rgba(43, 170, 223, .28);
+      outline-offset: 4px;
+    }
+
+    .media {
+      position: relative;
+      display: grid;
+      place-items: center;
+      height: 282px;
+      padding: 16px;
+      background: linear-gradient(180deg, #fff 0, var(--wash) 100%);
+      border-bottom: 1px solid #eef1f4;
+    }
+
+    .media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 14px rgba(31, 41, 51, .08));
+    }
+
+    .content {
+      display: grid;
+      gap: 10px;
+      padding: 16px 16px 12px;
+    }
+
+    .title {
+      margin: 0;
+      color: #111827;
+      font-size: 16px;
+      line-height: 1.38;
+    }
+
+    .meta {
+      display: flex;
+      align-items: baseline;
+      gap: 9px;
+      flex-wrap: wrap;
+    }
+
+    .price {
+      color: var(--money);
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .count {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .rating {
+      color: #f97316;
+      font-size: 13px;
+      line-height: 1.3;
+    }
+
+    .action {
+      padding: 0 16px 18px;
+    }
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 6px;
+      background: var(--brand);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(43, 170, 223, .16);
+      transition: background .18s ease;
+    }
+
+    .product:hover .button,
+    .product:focus-visible .button {
+      background: var(--brand-dark);
+    }
+
+    .note {
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .site-footer {
+      margin-top: 42px;
+      padding: 24px 0 0;
+      border-top: 1px solid #e9edf2;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .site-footer strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #384250;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <img class="logo" src="images/header-logo.jpeg" alt="Little Miracles">
+  </header>
+
+  <main class="page">
+    <h1 class="sr-only">Little Miracles Closet Dividers</h1>
+
+    <section class="shop-intro" aria-label="About Little Miracles products">
+      <p class="intro">Shop Little Miracles closet dividers and nursery organization sets.</p>
+      <div class="chips" aria-label="Product highlights">
+        <span class="chip">Baby shower ready</span>
+        <span class="chip">Nursery friendly</span>
+        <span class="chip">Easily sort clothes</span>
+      </div>
+    </section>
+
+    <section id="products" class="products" aria-label="Products"></section>
+
+    <footer class="site-footer">
+      <strong>&copy; <span id="year">2026</span> Little Miracles</strong>
+      <span>Product links open on Amazon.</span>
+    </footer>
+  </main>
+
+  <script>
+    const products = [
+      {
+        title: 'Baby Closet Size Dividers for Baby Clothes - 7X Dividers, Safari [White]',
+        price: '$9.99',
+        count: '7 Count',
+        rating: '4.8 ★★★★★ (1.2K)',
+        image: 'images/safari-white.jpg',
+        alt: 'Safari White 7X Baby Closet Size Dividers',
+        url: 'https://www.amazon.com/Baby-Closet-Size-Dividers-Elephant/dp/B084WPGG91/'
+      },
+      {
+        title: 'Baby Closet Size Dividers for Baby Clothes - Rustic Floral Nursery Closet Dividers',
+        price: '$9.99',
+        count: '6 Count',
+        rating: '4.8 ★★★★★ (810)',
+        image: 'images/rustic-floral.jpg',
+        alt: 'Rustic Floral Closet Dividers',
+        url: 'https://www.amazon.com/Baby-Closet-Size-Dividers-Bohemian/dp/B07J28T4P9/'
+      },
+      {
+        title: 'Baby Closet Size Dividers for Baby Clothes - Nautical Nursery Closet Dividers',
+        price: '$9.99',
+        count: '6 Count',
+        rating: '4.8 ★★★★★ (810)',
+        image: 'images/nautical.jpg',
+        alt: 'Nautical Closet Dividers',
+        url: 'https://www.amazon.com/Baby-Closet-Size-Dividers-Bohemian/dp/B07BXFP1XL/'
+      },
+      {
+        title: 'Baby Closet Size Dividers for Baby Clothes - 7X Dividers, Safari [Gray]',
+        price: '$9.99',
+        count: '7 Count',
+        rating: '4.8 ★★★★★ (1.2K)',
+        image: 'images/safari-gray.jpg',
+        alt: 'Safari Gray 7X Baby Closet Size Dividers',
+        url: 'https://www.amazon.com/Baby-Closet-Size-Dividers-Elephant/dp/B08GQ9VWSS'
+      },
+      {
+        title: 'Baby Closet Size Dividers, Wood, 7X Premium Nursery Closet Dividers',
+        price: '$13.99',
+        count: '7 Count',
+        rating: '4.8 ★★★★★ (320)',
+        image: 'images/wood.jpg',
+        alt: 'Wood 7X Premium Nursery Closet Dividers',
+        url: 'https://www.amazon.com/Baby-Closet-Size-Dividers-Eucalyptus/dp/B095XK9LQQ'
+      },
+      {
+        title: 'Baby Closet Size Dividers for Baby Clothes - 7X Dividers, Boho Nursery Closet Dividers',
+        price: '$9.99',
+        count: '7 Count',
+        rating: '4.8 ★★★★★ (810)',
+        image: 'images/boho.jpg',
+        alt: 'Boho 7X Baby Closet Size Dividers',
+        url: 'https://www.amazon.com/Baby-Closet-Size-Dividers-Bohemian/dp/B0977YH4YF'
+      },
+      {
+        title: 'Baby Closet Size Dividers for Baby Clothes, Woodland Nursery Closet Dividers',
+        price: '$8.99',
+        count: '6 Count',
+        rating: '4.8 ★★★★★ (1.8K)',
+        image: 'images/woodland.jpg',
+        alt: 'Woodland Closet Dividers',
+        url: 'https://www.amazon.com/Baby-Closet-Dividers-Woodland-Hedgehog/dp/B07J275ZVN/'
+      },
+      {
+        title: 'Baby Hangers & Closet Size Dividers, 7X Dividers and 20x Hangers, Botanical',
+        price: '$20.99',
+        count: '7 Dividers + 20 Hangers',
+        rating: '4.7 ★★★★★',
+        image: 'images/botanical-hangers.jpg',
+        alt: 'Botanical Baby Hangers and Closet Size Dividers',
+        url: 'https://www.amazon.com/Baby-Hangers-Closet-Size-Dividers/dp/B08F4Q75W3/'
+      },
+      {
+        title: 'Baby Closet Size Dividers for Baby Clothes - 7X Dividers, Botanical Nursery Closet Dividers',
+        price: '$9.99',
+        count: '7 Count',
+        rating: '4.8 ★★★★★ (608)',
+        image: 'images/botanical.jpg',
+        alt: 'Botanical 7X Baby Closet Size Dividers',
+        url: 'https://www.amazon.com/Baby-Closet-Size-Dividers-Eucalyptus/dp/B08DDJMNGZ/'
+      }
+    ];
+
+    const productsEl = document.getElementById('products');
+
+    function openProduct(url) {
+      const opened = window.open(url, '_blank', 'noopener,noreferrer');
+      if (opened) {
+        opened.opener = null;
+      }
+    }
+
+    function createTextElement(tag, className, text) {
+      const element = document.createElement(tag);
+      element.className = className;
+      element.textContent = text;
+      return element;
+    }
+
+    function createProductCard(product) {
+      const card = document.createElement('article');
+      card.className = 'product';
+      card.tabIndex = 0;
+      card.setAttribute('role', 'link');
+      card.setAttribute('aria-label', `${product.title} - Buy now on Amazon`);
+
+      card.addEventListener('click', () => openProduct(product.url));
+      card.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openProduct(product.url);
+        }
+      });
+
+      const media = document.createElement('div');
+      media.className = 'media';
+
+      const image = document.createElement('img');
+      image.src = product.image;
+      image.alt = product.alt;
+      media.appendChild(image);
+
+      const content = document.createElement('div');
+      content.className = 'content';
+      content.appendChild(createTextElement('h2', 'title', product.title));
+
+      const meta = document.createElement('div');
+      meta.className = 'meta';
+      meta.appendChild(createTextElement('span', 'price', product.price));
+      meta.appendChild(createTextElement('span', 'count', product.count));
+      content.appendChild(meta);
+      content.appendChild(createTextElement('div', 'rating', product.rating));
+
+      const action = document.createElement('div');
+      action.className = 'action';
+      action.appendChild(createTextElement('span', 'button', 'Buy Now'));
+      action.appendChild(createTextElement('p', 'note', '(Click takes you to Amazon Store Page)'));
+
+      card.append(media, content, action);
+      return card;
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+    products.forEach((product) => productsEl.appendChild(createProductCard(product)));
+  </script>
+</body>
+</html>
